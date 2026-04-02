@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talent Today — Boutique Recruiting for Founder-Led Companies</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f6f1ea;
+      --bg-soft: #efe8dd;
+      --panel: rgba(255,255,255,0.55);
+      --panel-strong: #f8f4ee;
+      --line: rgba(26, 22, 18, 0.08);
+      --line-strong: rgba(26, 22, 18, 0.14);
+      --text: #171411;
+      --muted: #6b6259;
+      --accent: #b08a4a;
+      --accent-deep: #2f3935;
+      --radius: 28px;
+      --radius-sm: 18px;
+      --shadow: 0 24px 80px rgba(28, 21, 14, 0.06);
+      --max: 1220px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(176,138,74,0.06), transparent 28%),
+        linear-gradient(180deg, #f8f4ee 0%, #f3ece2 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(248, 244, 238, 0.78);
+      border-bottom: 1px solid rgba(23, 20, 17, 0.05);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.94rem;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #d4b57d);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 2px solid rgba(255,255,255,0.85);
+      border-radius: 8px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 999px;
+      padding: 14px 24px;
+      font-size: 0.96rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent-deep);
+      color: white;
+      box-shadow: 0 14px 30px rgba(47,57,53,0.14);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(23,20,17,0.12);
+    }
+
+    section {
+      padding: 110px 0;
+    }
+
+    .hero {
+      padding-top: 84px;
+    }
+
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(176,138,74,0.08);
+      border: 1px solid rgba(176,138,74,0.18);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0;
+      line-height: 0.98;
+    }
+
+    .serif {
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .hero h1,
+    .section-head h2,
+    .cta-box h2,
+    .feature-panel h2,
+    .quote {
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.4rem, 8vw, 6.1rem);
+      letter-spacing: -0.05em;
+      margin: 24px 0 22px;
+      max-width: 11ch;
+    }
+
+    .hero p {
+      max-width: 640px;
+      font-size: 1.12rem;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions,
+    .mini-proof {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .mini-proof {
+      margin-top: 38px;
+      gap: 26px;
+    }
+
+    .mini-proof div {
+      max-width: 220px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .mini-proof strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.28rem;
+      margin-bottom: 6px;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .hero-card,
+    .card,
+    .price-card,
+    .feature-panel,
+    .cta-box,
+    .quote-card {
+      background: var(--panel);
+      border: 1px solid rgba(23,20,17,0.08);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .hero-card {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -50px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(176,138,74,0.16), transparent 70%);
+    }
+
+    .card-label {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .pipeline {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .pipe-item {
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(23,20,17,0.06);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+    }
+
+    .pipe-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(23,20,17,0.06);
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), #d9be8c);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p,
+    .card p,
+    .price-card p,
+    .feature-panel p,
+    .quote-card p {
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .cards-3,
+    .pricing,
+    .testimonial-grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .cards-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card,
+    .price-card,
+    .feature-panel,
+    .quote-card {
+      padding: 30px;
+    }
+
+    .card h3,
+    .price-card h3 {
+      margin: 14px 0 12px;
+    }
+
+    .card h3 {
+      font-size: 1.32rem;
+    }
+
+    .icon,
+    .step-num {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(176,138,74,0.10);
+      border: 1px solid rgba(176,138,74,0.18);
+      color: var(--accent);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 26px;
+    }
+
+    .feature-panel h2 {
+      font-size: 3rem;
+      margin: 18px 0 16px;
+      letter-spacing: -0.05em;
+    }
+
+    .steps {
+      display: grid;
+      gap: 16px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(23,20,17,0.08);
+    }
+
+    .step:last-child {
+      border-bottom: none;
+    }
+
+    .step h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .pricing {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .price-card.featured {
+      background: linear-gradient(180deg, #f5ede1, #f8f4ee);
+      transform: translateY(-8px);
+    }
+
+    .tier {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .price-card h3 {
+      font-size: 2rem;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .price {
+      font-size: 3.2rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      margin: 18px 0 6px;
+    }
+
+    .price-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0 0;
+      display: grid;
+      gap: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .price-card li::before {
+      content: "—";
+      color: var(--accent);
+      margin-right: 10px;
+    }
+
+    .testimonial-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .quote {
+      font-size: clamp(1.4rem, 2.5vw, 2.15rem);
+      line-height: 1.45;
+      letter-spacing: -0.03em;
+    }
+
+    .quote-card ul {
+      color: var(--muted);
+      line-height: 1.9;
+      padding-left: 18px;
+      margin: 18px 0 0;
+    }
+
+    .quote-card li strong {
+      color: var(--text);
+    }
+
+    .cta-box {
+      text-align: center;
+      padding: 78px 30px;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      letter-spacing: -0.04em;
+      margin-top: 16px;
+    }
+
+    .cta-box p {
+      max-width: 760px;
+      margin: 18px auto 30px;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    footer {
+      padding: 34px 0 46px;
+      color: var(--muted);
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(23,20,17,0.08);
+      padding-top: 26px;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-wrap,
+      .split,
+      .cards-3,
+      .pricing,
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .price-card.featured {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links a:not(.btn) {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 3.35rem;
+      }
+
+      section {
+        padding: 78px 0;
+      }
+
+      .container {
+        width: min(calc(100% - 26px), var(--max));
+      }
+
+      .mini-proof div {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <span>Talent Today</span>
+      </div>
+
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#process">How We Work</a>
+        <a href="#pricing">Engagements</a>
+        <a href="#contact" class="btn btn-secondary">Book Intro Call</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Boutique Recruiting for Founder-Led Companies</div>
+
+        <h1>Build the team your next stage requires.</h1>
+
+        <p>
+          Talent Today is a boutique recruiting partner for founders making critical hires.
+          We help early and growth-stage companies secure exceptional technical, product,
+          and go-to-market talent with more precision, less noise, and a far higher bar.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Book Intro Call</a>
+          <a href="#services" class="btn btn-secondary">View Services</a>
+        </div>
+
+        <div class="mini-proof">
+          <div>
+            <strong>Founder-Led</strong>
+            Search built around your actual hiring bar
+          </div>
+          <div>
+            <strong>High-Conviction</strong>
+            Candidate introductions over resume volume
+          </div>
+          <div>
+            <strong>Selective</strong>
+            A focused partner model, not a volume agency
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="card-label">Search Approach</div>
+        <h3 style="font-size:2rem; margin-top:10px; max-width:12ch;">A tighter, more deliberate way to hire.</h3>
+
+        <div class="pipeline">
+          <div class="pipe-item">
+            <div class="pipe-top">
+              <span>Role Definition</span>
+              <span>Refined</span>
+            </div>
+            <div class="bar"><div class="fill" style="width:90%"></div></div>
+          </div>
+
+          <div class="pipe-item">
+            <div class="pipe-top">
+              <span>Targeted Outreach</span>
+              <span>Active</span>
+            </div>
+            <div class="bar"><div class="fill" style="width:82%"></div></div>
+          </div>
+
+          <div class="pipe-item">
+            <div class="pipe-top">
+              <span>Candidate Quality</span>
+              <span>High Signal</span>
+            </div>
+            <div class="bar"><div class="fill" style="width:88%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Our Focus</div>
+          <h2>The hires that define your next stage.</h2>
+        </div>
+
+        <p>
+          We work with founders and leadership teams on roles where precision matters—
+          critical technical, product, go-to-market, and specialized searches.
+        </p>
+      </div>
+
+      <div class="cards-3">
+        <div class="card">
+          <div class="icon">01</div>
+          <h3>Technical Leadership</h3>
+          <p>
+            Founding and senior technical talent capable of building through ambiguity
+            and setting the standard early.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">02</div>
+          <h3>Product & Go-to-Market</h3>
+          <p>
+            Operators who can bring structure, momentum, and commercial clarity
+            at the stage where every hire matters.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">03</div>
+          <h3>Specialized Search</h3>
+          <p>
+            Difficult-to-fill roles where precision, discretion, and a stronger
+            search process make the difference.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="container split">
+      <div class="feature-panel">
+        <div class="eyebrow">How We Work</div>
+        <h2>A more disciplined search process.</h2>
+        <p>
+          We run a tighter process so founders spend less time filtering and more time
+          meeting the right people. Every search begins with clarity, not volume.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <h3>Role Calibration</h3>
+              <p>
+                We define the actual brief behind the brief—what success looks like in the role,
+                what stage fit matters, and where compromise is unacceptable.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <h3>Targeted Search</h3>
+              <p>
+                We identify and engage talent through focused outreach, market mapping,
+                and disciplined search execution—not passive inbound dependency.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <h3>Candidate Evaluation</h3>
+              <p>
+                We assess capability, motivation, communication, and startup readiness
+                before introducing candidates into your process.
+              </p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">04</div>
+            <div>
+              <h3>Offer & Close</h3>
+              <p>
+                We support the close from alignment to acceptance, helping ensure the strongest
+                candidates convert with clarity and confidence.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Engagements</div>
+          <h2>Structured to fit your stage.</h2>
+        </div>
+
+        <p>
+          We keep engagements clear, focused, and aligned to how your company is actually hiring.
+        </p>
+      </div>
+
+      <div class="pricing">
+        <div class="price-card">
+          <div class="tier">Targeted Search</div>
+          <h3>Search Support</h3>
+          <div class="price">12%</div>
+          <p>
+            Best for teams with an internal process already in place that need stronger sourcing
+            and more qualified candidate flow.
+          </p>
+          <ul>
+            <li>Targeted market mapping</li>
+            <li>Candidate outreach</li>
+            <li>Qualified shortlist delivery</li>
+            <li>Weekly search calibration</li>
+          </ul>
+        </div>
+
+        <div class="price-card featured">
+          <div class="tier">End-to-End</div>
+          <h3>Full-Cycle Search</h3>
+          <div class="price">17.5%</div>
+          <p>
+            Our core engagement. We manage the full search from intake through signed offer.
+          </p>
+          <ul>
+            <li>Full candidate management</li>
+            <li>Interview coordination</li>
+            <li>Reference and process support</li>
+            <li>Offer strategy and close</li>
+          </ul>
+        </div>
+
+        <div class="price-card">
+          <div class="tier">Embedded</div>
+          <h3>Fractional Talent Partner</h3>
+          <div class="price" style="font-size:2.2rem; margin-top:22px;">Custom</div>
+          <p>
+            For teams hiring across multiple roles who need a more integrated recruiting partner.
+          </p>
+          <ul>
+            <li>Embedded recruiting support</li>
+            <li>Hiring process refinement</li>
+            <li>Job architecture and search setup</li>
+            <li>Multi-role execution</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container testimonial-grid">
+      <div class="quote-card">
+        <div class="eyebrow">Founder Perspective</div>
+        <p class="quote">
+          “The difference was quality. We spent less time sorting through candidates
+          and more time speaking with people we could actually imagine building with.”
+        </p>
+        <p style="margin-top:20px;">— Founder, Venture-Backed SaaS Company</p>
+      </div>
+
+      <div class="quote-card">
+        <div class="eyebrow">Why Talent Today</div>
+        <h3 style="font-size:2rem; margin:16px 0 14px;" class="serif">A higher standard of search.</h3>
+        <ul>
+          <li><strong>No handoffs.</strong> You work directly with a senior recruiting partner.</li>
+          <li><strong>Sharper calibration.</strong> Better upfront definition leads to better downstream hiring.</li>
+          <li><strong>Founder fluency.</strong> We understand stage, urgency, and the cost of getting a key hire wrong.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <div class="eyebrow" style="justify-content:center; margin:0 auto; width:max-content;">Start the Search</div>
+        <h2>Make the next hire the right one.</h2>
+        <p>
+          If the role matters, the search should too. We partner with a select number
+          of companies at a time to keep every engagement focused and high-touch.
+        </p>
+
+        <div class="hero-actions" style="justify-content:center;">
+          <a href="mailto:hello@talenttoday.ai" class="btn btn-primary">Book Intro Call</a>
+          <a href="mailto:hello@talenttoday.ai" class="btn btn-secondary">hello@talenttoday.ai</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div>© 2026 Talent Today. Boutique recruiting for founder-led companies.</div>
+      <div>Built for critical hires.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

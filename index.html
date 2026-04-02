@@ -1,4 +1,4 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -12,16 +12,16 @@
   <style>
     :root {
       --bg: #f7f3ed;
-      --panel: rgba(255,255,255,0.52);
+      --panel: rgba(255,255,255,0.56);
       --panel-solid: #faf7f3;
       --line: rgba(26, 22, 18, 0.08);
       --text: #181410;
       --muted: #6e6259;
       --accent: #b08a4a;
-      --deep: #2a3530;
+      --deep: #27312d;
       --radius: 24px;
-      --shadow: 0 20px 60px rgba(24,18,10,0.07);
-      --max: 1180px;
+      --shadow: 0 20px 60px rgba(24,18,10,0.06);
+      --max: 1160px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,6 +32,8 @@
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -61,40 +63,45 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 14px;
       font-family: 'Lora', serif;
-      font-size: 1.05rem;
-      font-weight: 600;
+      font-size: 1.02rem;
+      font-weight: 500;
       letter-spacing: 0.01em;
     }
 
+    /* SIGNAL MARK LOGO */
     .brand-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), #d4b57d);
+      width: 34px;
+      height: 34px;
       position: relative;
       flex-shrink: 0;
     }
 
-    .brand-mark::after {
-      content: "";
+    .brand-mark span {
       position: absolute;
-      inset: 7px;
-      border: 1.5px solid rgba(255,255,255,0.85);
-      border-radius: 5px;
+      bottom: 0;
+      width: 4px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #d3b172 0%, #a47c3d 100%);
+      opacity: 0.95;
     }
+
+    .brand-mark span:nth-child(1) { left: 2px; height: 11px; opacity: 0.55; }
+    .brand-mark span:nth-child(2) { left: 10px; height: 18px; opacity: 0.72; }
+    .brand-mark span:nth-child(3) { left: 18px; height: 26px; }
+    .brand-mark span:nth-child(4) { left: 26px; height: 15px; opacity: 0.68; }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 30px;
     }
 
     .nav-links a {
       color: var(--muted);
       font-weight: 400;
-      font-size: 0.95rem;
+      font-size: 0.94rem;
       transition: color 0.2s;
     }
 
@@ -105,7 +112,7 @@
       align-items: center;
       justify-content: center;
       border-radius: 999px;
-      padding: 13px 24px;
+      padding: 13px 22px;
       font-size: 0.93rem;
       font-weight: 500;
       font-family: 'DM Sans', sans-serif;
@@ -128,15 +135,14 @@
       border: 1px solid rgba(24,20,16,0.14);
     }
 
-    /* SECTIONS */
-    section { padding: 112px 0; }
-    .hero { padding-top: 88px; padding-bottom: 112px; }
+    section { padding: 110px 0; }
+    .hero { padding-top: 82px; padding-bottom: 104px; }
 
     /* HERO */
     .hero-wrap {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 56px;
       align-items: start;
     }
 
@@ -149,7 +155,7 @@
       background: rgba(176,138,74,0.07);
       border: 1px solid rgba(176,138,74,0.16);
       color: var(--accent);
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 500;
       letter-spacing: 0.09em;
       text-transform: uppercase;
@@ -165,25 +171,20 @@
 
     .hero h1 {
       font-family: 'Lora', serif;
-      font-size: clamp(3rem, 6.5vw, 5.4rem);
+      font-size: clamp(3rem, 6.4vw, 5.3rem);
       font-weight: 500;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
+      letter-spacing: -0.035em;
+      line-height: 1.03;
       margin: 22px 0 20px;
-      max-width: 14ch;
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
+      max-width: 11ch;
     }
 
     .hero p {
-      font-size: 1.08rem;
+      font-size: 1.02rem;
       color: var(--muted);
-      line-height: 1.85;
-      max-width: 520px;
-      margin-bottom: 32px;
+      line-height: 1.9;
+      max-width: 510px;
+      margin-bottom: 30px;
       font-weight: 300;
     }
 
@@ -193,23 +194,22 @@
       flex-wrap: wrap;
     }
 
-    /* DIFFERENCE PANEL */
+    /* HERO PANEL */
     .difference-panel {
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 36px;
-      margin-top: 8px;
+      padding: 34px;
     }
 
-    .difference-panel .panel-label {
-      font-size: 0.78rem;
+    .panel-label {
+      font-size: 0.76rem;
       font-weight: 500;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .diff-list {
@@ -218,62 +218,51 @@
     }
 
     .diff-item {
-      display: grid;
-      grid-template-columns: 1px 1fr;
-      gap: 0 24px;
       padding: 22px 0;
       border-bottom: 1px solid var(--line);
-      align-items: start;
     }
 
     .diff-item:last-child { border-bottom: none; }
 
-    .diff-line {
-      width: 1px;
-      height: 100%;
-      background: var(--accent);
-      opacity: 0.35;
-      margin-top: 4px;
-    }
-
-    .diff-content h4 {
+    .diff-item h4 {
       font-family: 'Lora', serif;
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-weight: 500;
       margin-bottom: 6px;
       line-height: 1.3;
     }
 
-    .diff-content p {
-      font-size: 0.91rem;
+    .diff-item p {
+      font-size: 0.9rem;
       color: var(--muted);
-      line-height: 1.75;
+      line-height: 1.8;
       font-weight: 300;
+      max-width: 42ch;
     }
 
-    /* SECTION HEADS */
+    /* SECTION HEAD */
     .section-head {
-      margin-bottom: 52px;
+      margin-bottom: 46px;
     }
 
     .section-head h2 {
       font-family: 'Lora', serif;
-      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
       font-weight: 500;
       letter-spacing: -0.03em;
       line-height: 1.08;
-      margin: 14px 0 16px;
+      margin: 14px 0 12px;
     }
 
     .section-head p {
       color: var(--muted);
       line-height: 1.85;
-      max-width: 560px;
+      max-width: 520px;
       font-weight: 300;
-      font-size: 1.05rem;
+      font-size: 1rem;
     }
 
-    /* SERVICES */
+    /* CARDS */
     .cards-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -285,7 +274,7 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 32px;
+      padding: 30px;
       transition: transform 0.25s;
     }
 
@@ -293,33 +282,32 @@
 
     .card-num {
       font-family: 'Lora', serif;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--accent);
-      font-weight: 400;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       letter-spacing: 0.05em;
     }
 
     .card h3 {
       font-family: 'Lora', serif;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 500;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       line-height: 1.25;
     }
 
     .card p {
       color: var(--muted);
       line-height: 1.8;
-      font-size: 0.95rem;
+      font-size: 0.93rem;
       font-weight: 300;
     }
 
-    /* PROCESS */
+    /* SPLIT */
     .split {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 52px;
       align-items: start;
     }
 
@@ -330,18 +318,19 @@
 
     .feature-panel h2 {
       font-family: 'Lora', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2rem, 4vw, 2.9rem);
       font-weight: 500;
       letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin: 14px 0 16px;
+      line-height: 1.08;
+      margin: 14px 0 14px;
     }
 
     .feature-panel p {
       color: var(--muted);
       line-height: 1.85;
       font-weight: 300;
-      font-size: 1.02rem;
+      font-size: 1rem;
+      max-width: 44ch;
     }
 
     .steps { display: grid; gap: 0; }
@@ -349,9 +338,9 @@
     .step {
       display: grid;
       grid-template-columns: 48px 1fr;
-      gap: 20px;
+      gap: 18px;
       align-items: start;
-      padding: 24px 0;
+      padding: 22px 0;
       border-bottom: 1px solid var(--line);
     }
 
@@ -359,50 +348,28 @@
 
     .step-num {
       font-family: 'Lora', serif;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--accent);
-      font-weight: 400;
       padding-top: 3px;
       letter-spacing: 0.05em;
     }
 
     .step h3 {
       font-family: 'Lora', serif;
-      font-size: 1.12rem;
+      font-size: 1.08rem;
       font-weight: 500;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .step p {
       color: var(--muted);
       line-height: 1.8;
-      font-size: 0.93rem;
+      font-size: 0.91rem;
       font-weight: 300;
+      max-width: 46ch;
     }
 
     /* PRICING */
-    .pricing-intro {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-      margin-bottom: 48px;
-    }
-
-    .pricing-note {
-      background: rgba(176,138,74,0.06);
-      border: 1px solid rgba(176,138,74,0.14);
-      border-radius: 16px;
-      padding: 24px 28px;
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.8;
-      font-weight: 300;
-      font-style: italic;
-      margin-top: 8px;
-      align-self: end;
-    }
-
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -414,7 +381,7 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 32px;
+      padding: 30px;
     }
 
     .price-card.featured {
@@ -423,30 +390,27 @@
     }
 
     .tier {
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--accent);
       font-weight: 500;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .price-card h3 {
       font-family: 'Lora', serif;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 500;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
       line-height: 1.2;
     }
 
-    .price-card > p {
-      color: var(--muted);
-      font-size: 0.93rem;
-      line-height: 1.8;
-      font-weight: 300;
-      margin-bottom: 24px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--line);
+    .price {
+      font-family: 'Lora', serif;
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+      letter-spacing: -0.03em;
     }
 
     .price-card ul {
@@ -471,67 +435,10 @@
       flex-shrink: 0;
     }
 
-    /* QUOTE */
-    .quote-section {
-      background: var(--panel-solid);
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 80px 0;
-    }
-
-    .quote-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
-
-    .quote-text {
-      font-family: 'Lora', serif;
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      font-weight: 400;
-      font-style: italic;
-      line-height: 1.55;
-      letter-spacing: -0.02em;
-      color: var(--text);
-    }
-
-    .quote-attr {
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .why-list {
-      display: grid;
-      gap: 0;
-    }
-
-    .why-item {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .why-item:last-child { border-bottom: none; }
-
-    .why-item h4 {
-      font-family: 'Lora', serif;
-      font-size: 1rem;
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-
-    .why-item p {
-      color: var(--muted);
-      font-size: 0.91rem;
-      line-height: 1.75;
-      font-weight: 300;
-    }
-
     /* CTA */
     .cta-box {
       text-align: center;
-      padding: 80px 40px;
+      padding: 78px 36px;
       background: var(--panel);
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -540,20 +447,20 @@
 
     .cta-box h2 {
       font-family: 'Lora', serif;
-      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-size: clamp(2.1rem, 4.4vw, 3.4rem);
       font-weight: 500;
       letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin: 14px 0 18px;
+      line-height: 1.08;
+      margin: 14px 0 16px;
     }
 
     .cta-box p {
       color: var(--muted);
-      max-width: 520px;
-      margin: 0 auto 32px;
+      max-width: 470px;
+      margin: 0 auto 28px;
       line-height: 1.85;
       font-weight: 300;
-      font-size: 1.05rem;
+      font-size: 1rem;
     }
 
     .cta-actions {
@@ -565,7 +472,7 @@
 
     /* FOOTER */
     footer {
-      padding: 32px 0 44px;
+      padding: 30px 0 42px;
     }
 
     .footer-wrap {
@@ -577,7 +484,7 @@
       border-top: 1px solid var(--line);
       padding-top: 24px;
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 300;
     }
 
@@ -586,18 +493,12 @@
       .hero-wrap,
       .split,
       .cards-3,
-      .pricing-intro,
-      .pricing-grid,
-      .quote-inner {
+      .pricing-grid {
         grid-template-columns: 1fr;
       }
 
       .feature-panel {
         position: static;
-      }
-
-      .pricing-note {
-        margin-top: 0;
       }
     }
 
@@ -606,7 +507,7 @@
       section { padding: 72px 0; }
       .hero { padding-top: 56px; }
       .container { width: min(calc(100% - 28px), var(--max)); }
-      .hero h1 { font-size: 2.8rem; }
+      .hero h1 { font-size: 2.7rem; }
       .cta-box { padding: 52px 24px; }
     }
   </style>
@@ -616,96 +517,92 @@
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand">
-        <div class="brand-mark"></div>
+        <div class="brand-mark" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         Talent Drift
       </div>
       <div class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#process">How We Work</a>
-        <a href="#engagements">Engagements</a>
-        <a href="#contact" class="btn btn-secondary">Book Intro Call</a>
+        <a href="#who">Who We Are</a>
+        <a href="#what">What We Recruit</a>
+        <a href="#how">How We Do It</a>
+        <a href="#pricing" class="btn btn-secondary">Book Intro Call</a>
       </div>
     </div>
   </nav>
 
-  <section class="hero">
+  <section class="hero" id="who">
     <div class="container hero-wrap">
       <div>
-        <div class="eyebrow"><span class="dot"></span> Boutique Recruiting for Founder-Led Companies</div>
-        <h1>The team your next stage <em>requires.</em></h1>
+        <div class="eyebrow"><span class="dot"></span> Recruiting for founder-led companies</div>
+        <h1>Engineering, Product, and Design.</h1>
         <p>
-          Talent Drift is a recruiting partner for founders making critical hires. We work with early and growth-stage companies to find exceptional technical, product, and design talent — with more precision and a far higher bar.
+          For founding teams and growth phases.
         </p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Book Intro Call</a>
-          <a href="#services" class="btn btn-secondary">View Services</a>
+          <a href="#pricing" class="btn btn-primary">Book Intro Call</a>
+          <a href="#what" class="btn btn-secondary">See Focus</a>
         </div>
       </div>
 
       <div class="difference-panel">
-        <div class="panel-label">What sets us apart</div>
+        <div class="panel-label">Who we are</div>
         <div class="diff-list">
           <div class="diff-item">
-            <div class="diff-line"></div>
-            <div class="diff-content">
-              <h4>You work with a senior partner, always</h4>
-              <p>No handoffs to junior associates. The person you speak with on day one runs your search from start to close.</p>
-            </div>
+            <h4>High-judgment search</h4>
+            <p>Senior-led, selective, and built for critical hires.</p>
           </div>
           <div class="diff-item">
-            <div class="diff-line"></div>
-            <div class="diff-content">
-              <h4>Quality over volume, every time</h4>
-              <p>We make fewer introductions on purpose. Every candidate we bring forward has been rigorously assessed against your actual bar.</p>
-            </div>
+            <h4>Built for founder speed</h4>
+            <p>Less noise. Better candidates. Faster decisions.</p>
           </div>
           <div class="diff-item">
-            <div class="diff-line"></div>
-            <div class="diff-content">
-              <h4>We understand the cost of a bad hire</h4>
-              <p>We think in terms of runway, stage fit, and long-term team health — not placement fees and fill rates.</p>
-            </div>
+            <h4>Modern search infrastructure</h4>
+            <p>Agents do the heavy lifting. Humans drive the outcome.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="services">
+  <section id="what">
     <div class="container">
       <div class="section-head">
-        <div class="eyebrow"><span class="dot"></span> Our Focus</div>
-        <h2>Hires that define your trajectory.</h2>
-        <p>We work on roles where the wrong decision is expensive and the right one changes everything.</p>
+        <div class="eyebrow"><span class="dot"></span> What we recruit</div>
+        <h2>The roles that change trajectory.</h2>
+        <p>Early, foundational, and high-leverage hires.</p>
       </div>
 
       <div class="cards-3">
         <div class="card">
           <div class="card-num">01</div>
-          <h3>Technical Leadership</h3>
-          <p>Founding and senior engineers who can build through ambiguity, set standards early, and grow with the company as it scales.</p>
+          <h3>Engineering</h3>
+          <p>Founding, senior, and technical leadership.</p>
         </div>
         <div class="card">
           <div class="card-num">02</div>
-          <h3>Product & Design</h3>
-          <p>Operators who bring structure and clarity at the stage where every decision — and every person — has outsized impact.</p>
+          <h3>Product</h3>
+          <p>PMs and product leaders with stage judgment.</p>
         </div>
         <div class="card">
           <div class="card-num">03</div>
-          <h3>Specialized Search</h3>
-          <p>Difficult-to-fill roles where a stronger search process, deeper networks, and genuine discretion make the difference.</p>
+          <h3>Design</h3>
+          <p>Product designers who raise the bar early.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="process">
+  <section id="how">
     <div class="container split">
       <div class="feature-panel">
-        <div class="eyebrow"><span class="dot"></span> How We Work</div>
-        <h2>A more deliberate search process.</h2>
+        <div class="eyebrow"><span class="dot"></span> How we do it</div>
+        <h2>Agent-powered. Human-led.</h2>
         <p>
-          We run tighter searches so founders spend less time filtering and more time speaking with people worth meeting. Every engagement starts with clarity, not volume.
+          Our systems handle the search depth. We handle judgment, relationships, and close.
         </p>
       </div>
 
@@ -713,128 +610,91 @@
         <div class="step">
           <div class="step-num">01</div>
           <div>
-            <h3>Role Calibration</h3>
-            <p>We define the brief behind the brief — what success looks like in the role, what stage fit means, and where compromise isn't an option.</p>
+            <h3>Calibrate</h3>
+            <p>We define the real brief.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">02</div>
           <div>
-            <h3>Targeted Search</h3>
-            <p>We identify and engage candidates through focused outreach and disciplined market mapping — not passive job postings or resume databases.</p>
+            <h3>Search</h3>
+            <p>Agents map, source, and surface signal.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">03</div>
           <div>
-            <h3>Candidate Evaluation</h3>
-            <p>We assess capability, motivation, and startup readiness before anyone enters your process. You only meet people worth your time.</p>
+            <h3>Qualify</h3>
+            <p>We pressure-test fit before intro.</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">04</div>
           <div>
-            <h3>Offer & Close</h3>
-            <p>We support the close from alignment to acceptance — helping ensure your strongest candidates convert with confidence.</p>
+            <h3>Close</h3>
+            <p>We run the process through acceptance.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="engagements">
+  <section id="pricing">
     <div class="container">
-      <div class="pricing-intro">
-        <div class="section-head" style="margin-bottom:0;">
-          <div class="eyebrow"><span class="dot"></span> Engagements</div>
-          <h2>Structured around how you hire.</h2>
-          <p>Every search is different. We offer three engagement models to fit where your company is and what the role requires.</p>
-        </div>
-        <div class="pricing-note">
-          Pricing is based on the role, scope, and engagement type. We're happy to walk through what makes sense for your situation on an intro call.
-        </div>
+      <div class="section-head">
+        <div class="eyebrow"><span class="dot"></span> Pricing</div>
+        <h2>Structured around the search.</h2>
+        <p>Simple engagement models. Scoped per role.</p>
       </div>
 
       <div class="pricing-grid">
         <div class="price-card">
           <div class="tier">Search Support</div>
-          <h3>Sourcing & Pipeline</h3>
-          <p>
-            For teams with an internal hiring process who need stronger sourcing and more qualified candidate flow. We own outreach and deliver a vetted shortlist.
-          </p>
+          <h3>Sourcing</h3>
+          <div class="price">$$</div>
           <ul>
-            <li>Targeted market mapping</li>
-            <li>Candidate outreach and engagement</li>
-            <li>Vetted shortlist delivery</li>
-            <li>Regular calibration syncs</li>
+            <li>Targeted search</li>
+            <li>Candidate outreach</li>
+            <li>Qualified pipeline</li>
           </ul>
         </div>
 
         <div class="price-card featured">
-          <div class="tier">Full-Cycle Search</div>
-          <h3>End-to-End Partnership</h3>
-          <p>
-            Our core engagement. We manage the complete search — from initial brief through signed offer — acting as a true extension of your team.
-          </p>
+          <div class="tier">Full Search</div>
+          <h3>End-to-End</h3>
+          <div class="price">$$$</div>
           <ul>
-            <li>Full candidate management</li>
-            <li>Interview coordination and feedback</li>
-            <li>Reference checks and process support</li>
-            <li>Offer strategy and close</li>
+            <li>Full-cycle search</li>
+            <li>Interview process support</li>
+            <li>Offer and close</li>
           </ul>
         </div>
 
         <div class="price-card">
           <div class="tier">Embedded</div>
-          <h3>Fractional Talent Partner</h3>
-          <p>
-            For companies hiring across multiple roles who need an integrated recruiting partner embedded in their team and process.
-          </p>
+          <h3>Fractional Talent</h3>
+          <div class="price">Custom</div>
           <ul>
-            <li>Embedded recruiting support</li>
-            <li>Hiring process and structure</li>
-            <li>Job architecture and search setup</li>
-            <li>Multi-role execution</li>
+            <li>Multi-role hiring support</li>
+            <li>Embedded recruiting</li>
+            <li>Internal process lift</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="quote-section">
-    <div class="container quote-inner">
-      <div>
-        <p class="quote-text">"The difference was quality. We spent less time sorting through candidates and more time speaking with people we could actually imagine building with."</p>
-        <p class="quote-attr">— Founder, Venture-Backed SaaS Company</p>
-      </div>
-      <div class="why-list">
-        <div class="why-item">
-          <h4>No handoffs</h4>
-          <p>You work directly with a senior recruiting partner from first conversation to close.</p>
-        </div>
-        <div class="why-item">
-          <h4>Sharper calibration</h4>
-          <p>Better upfront definition leads to fewer wasted interviews and stronger hires.</p>
-        </div>
-        <div class="why-item">
-          <h4>Founder fluency</h4>
-          <p>We understand stage, urgency, and what it actually costs to get a key hire wrong.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <section id="contact">
     <div class="container">
       <div class="cta-box">
-        <div class="eyebrow" style="margin: 0 auto; width: max-content;">Start the Search</div>
-        <h2>Make the next hire the right one.</h2>
+        <div class="eyebrow" style="margin: 0 auto; width: max-content;">Talent Drift</div>
+        <h2>Critical hires, done right.</h2>
         <p>
-          We partner with a select number of companies at a time to keep every search focused and high-touch. If the role matters, let's talk.
+          Book an intro call.
         </p>
         <div class="cta-actions">
-          <a href="mailto:hello@talentdrift.ai" class="btn btn-primary">Book Intro Call</a>
-          <a href="mailto:hello@talentdrift.ai" class="btn btn-secondary">hello@talentdrift.ai</a>
+          <a href="mailto:hello@talentdrift.ai" class="btn btn-primary">hello@talentdrift.ai</a>
+          <a href="mailto:hello@talentdrift.ai" class="btn btn-secondary">Get in Touch</a>
         </div>
       </div>
     </div>
@@ -842,8 +702,8 @@
 
   <footer>
     <div class="container footer-wrap">
-      <div>© 2026 Talent Drift. Recruiting for founder-led companies.</div>
-      <div>Built for critical hires.</div>
+      <div>© 2026 Talent Drift</div>
+      <div>Engineering · Product · Design</div>
     </div>
   </footer>
 

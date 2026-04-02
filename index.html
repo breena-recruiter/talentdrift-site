@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,85 +7,71 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #f6f1ea;
-      --bg-soft: #efe8dd;
-      --panel: rgba(255,255,255,0.55);
-      --panel-strong: #f8f4ee;
+      --bg: #f7f3ed;
+      --panel: rgba(255,255,255,0.52);
+      --panel-solid: #faf7f3;
       --line: rgba(26, 22, 18, 0.08);
-      --line-strong: rgba(26, 22, 18, 0.14);
-      --text: #171411;
-      --muted: #6b6259;
+      --text: #181410;
+      --muted: #6e6259;
       --accent: #b08a4a;
-      --accent-deep: #2f3935;
-      --radius: 28px;
-      --radius-sm: 18px;
-      --shadow: 0 24px 80px rgba(28, 21, 14, 0.06);
-      --max: 1220px;
+      --deep: #2a3530;
+      --radius: 24px;
+      --shadow: 0 20px 60px rgba(24,18,10,0.07);
+      --max: 1180px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(176,138,74,0.06), transparent 28%),
-        linear-gradient(180deg, #f8f4ee 0%, #f3ece2 100%);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .container {
       width: min(var(--max), calc(100% - 48px));
       margin: 0 auto;
     }
 
+    /* NAV */
     .nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(14px);
-      background: rgba(248, 244, 238, 0.78);
-      border-bottom: 1px solid rgba(23, 20, 17, 0.05);
+      backdrop-filter: blur(16px);
+      background: rgba(247,243,237,0.82);
+      border-bottom: 1px solid var(--line);
     }
 
     .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
-      gap: 20px;
+      padding: 22px 0;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 0.94rem;
+      gap: 11px;
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
     }
 
     .brand-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
       background: linear-gradient(135deg, var(--accent), #d4b57d);
       position: relative;
       flex-shrink: 0;
@@ -94,458 +80,534 @@
     .brand-mark::after {
       content: "";
       position: absolute;
-      inset: 8px;
-      border: 2px solid rgba(255,255,255,0.85);
-      border-radius: 8px;
+      inset: 7px;
+      border: 1.5px solid rgba(255,255,255,0.85);
+      border-radius: 5px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 32px;
     }
 
     .nav-links a {
       color: var(--muted);
-      font-weight: 500;
-      transition: 0.25s ease;
+      font-weight: 400;
+      font-size: 0.95rem;
+      transition: color 0.2s;
     }
 
-    .nav-links a:hover {
-      color: var(--text);
-    }
+    .nav-links a:hover { color: var(--text); }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
       border-radius: 999px;
-      padding: 14px 24px;
-      font-size: 0.96rem;
-      font-weight: 700;
+      padding: 13px 24px;
+      font-size: 0.93rem;
+      font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
       border: none;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-    }
+    .btn:hover { transform: translateY(-1px); }
 
     .btn-primary {
-      background: var(--accent-deep);
+      background: var(--deep);
       color: white;
-      box-shadow: 0 14px 30px rgba(47,57,53,0.14);
+      box-shadow: 0 10px 28px rgba(42,53,48,0.18);
     }
 
     .btn-secondary {
       background: transparent;
       color: var(--text);
-      border: 1px solid rgba(23,20,17,0.12);
+      border: 1px solid rgba(24,20,16,0.14);
     }
 
-    section {
-      padding: 110px 0;
-    }
+    /* SECTIONS */
+    section { padding: 112px 0; }
+    .hero { padding-top: 88px; padding-bottom: 112px; }
 
-    .hero {
-      padding-top: 84px;
-    }
-
+    /* HERO */
     .hero-wrap {
       display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 48px;
-      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 8px 14px;
+      gap: 9px;
+      padding: 7px 13px;
       border-radius: 999px;
-      background: rgba(176,138,74,0.08);
-      border: 1px solid rgba(176,138,74,0.18);
+      background: rgba(176,138,74,0.07);
+      border: 1px solid rgba(176,138,74,0.16);
       color: var(--accent);
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
     }
 
     .dot {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--accent);
-    }
-
-    h1, h2, h3, h4 {
-      margin: 0;
-      line-height: 0.98;
-    }
-
-    .serif {
-      font-family: Georgia, "Times New Roman", serif;
-    }
-
-    .hero h1,
-    .section-head h2,
-    .cta-box h2,
-    .feature-panel h2,
-    .quote {
-      font-family: Georgia, "Times New Roman", serif;
-    }
-
-    .hero h1 {
-      font-size: clamp(3.4rem, 8vw, 6.1rem);
-      letter-spacing: -0.05em;
-      margin: 24px 0 22px;
-      max-width: 11ch;
-    }
-
-    .hero p {
-      max-width: 640px;
-      font-size: 1.12rem;
-      color: var(--muted);
-      line-height: 1.9;
-      margin-bottom: 30px;
-    }
-
-    .hero-actions,
-    .mini-proof {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .mini-proof {
-      margin-top: 38px;
-      gap: 26px;
-    }
-
-    .mini-proof div {
-      max-width: 220px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .mini-proof strong {
-      display: block;
-      color: var(--text);
-      font-size: 1.28rem;
-      margin-bottom: 6px;
-      font-family: Georgia, "Times New Roman", serif;
-    }
-
-    .hero-card,
-    .card,
-    .price-card,
-    .feature-panel,
-    .cta-box,
-    .quote-card {
-      background: var(--panel);
-      border: 1px solid rgba(23,20,17,0.08);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-    }
-
-    .hero-card {
-      padding: 34px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      right: -40px;
-      bottom: -50px;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(176,138,74,0.16), transparent 70%);
-    }
-
-    .card-label {
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-
-    .pipeline {
-      display: grid;
-      gap: 16px;
-      margin-top: 24px;
-    }
-
-    .pipe-item {
-      background: rgba(255,255,255,0.58);
-      border: 1px solid rgba(23,20,17,0.06);
-      border-radius: 22px;
-      padding: 18px 18px 16px;
-    }
-
-    .pipe-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-
-    .bar {
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(23,20,17,0.06);
-      overflow: hidden;
-    }
-
-    .fill {
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--accent), #d9be8c);
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 28px;
-      margin-bottom: 36px;
-    }
-
-    .section-head h2 {
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      letter-spacing: -0.04em;
-    }
-
-    .section-head p,
-    .card p,
-    .price-card p,
-    .feature-panel p,
-    .quote-card p {
-      color: var(--muted);
-      line-height: 1.85;
-    }
-
-    .cards-3,
-    .pricing,
-    .testimonial-grid {
-      display: grid;
-      gap: 22px;
-    }
-
-    .cards-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .card,
-    .price-card,
-    .feature-panel,
-    .quote-card {
-      padding: 30px;
-    }
-
-    .card h3,
-    .price-card h3 {
-      margin: 14px 0 12px;
-    }
-
-    .card h3 {
-      font-size: 1.32rem;
-    }
-
-    .icon,
-    .step-num {
-      width: 54px;
-      height: 54px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      background: rgba(176,138,74,0.10);
-      border: 1px solid rgba(176,138,74,0.18);
-      color: var(--accent);
-      font-weight: 800;
       flex-shrink: 0;
     }
 
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(3rem, 6.5vw, 5.4rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin: 22px 0 20px;
+      max-width: 14ch;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 520px;
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* DIFFERENCE PANEL */
+    .difference-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 36px;
+      margin-top: 8px;
+    }
+
+    .difference-panel .panel-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+
+    .diff-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .diff-item {
+      display: grid;
+      grid-template-columns: 1px 1fr;
+      gap: 0 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: start;
+    }
+
+    .diff-item:last-child { border-bottom: none; }
+
+    .diff-line {
+      width: 1px;
+      height: 100%;
+      background: var(--accent);
+      opacity: 0.35;
+      margin-top: 4px;
+    }
+
+    .diff-content h4 {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .diff-content p {
+      font-size: 0.91rem;
+      color: var(--muted);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* SECTION HEADS */
+    .section-head {
+      margin-bottom: 52px;
+    }
+
+    .section-head h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: 14px 0 16px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 560px;
+      font-weight: 300;
+      font-size: 1.05rem;
+    }
+
+    /* SERVICES */
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px;
+      transition: transform 0.25s;
+    }
+
+    .card:hover { transform: translateY(-3px); }
+
+    .card-num {
+      font-family: 'Lora', serif;
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 400;
+      margin-bottom: 18px;
+      letter-spacing: 0.05em;
+    }
+
+    .card h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.95rem;
+      font-weight: 300;
+    }
+
+    /* PROCESS */
     .split {
       display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 26px;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .feature-panel {
+      position: sticky;
+      top: 120px;
     }
 
     .feature-panel h2 {
-      font-size: 3rem;
-      margin: 18px 0 16px;
-      letter-spacing: -0.05em;
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin: 14px 0 16px;
     }
 
-    .steps {
-      display: grid;
-      gap: 16px;
+    .feature-panel p {
+      color: var(--muted);
+      line-height: 1.85;
+      font-weight: 300;
+      font-size: 1.02rem;
     }
+
+    .steps { display: grid; gap: 0; }
 
     .step {
       display: grid;
-      grid-template-columns: 64px 1fr;
-      gap: 18px;
+      grid-template-columns: 48px 1fr;
+      gap: 20px;
       align-items: start;
-      padding: 18px 0;
-      border-bottom: 1px solid rgba(23,20,17,0.08);
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
     }
 
-    .step:last-child {
-      border-bottom: none;
+    .step:last-child { border-bottom: none; }
+
+    .step-num {
+      font-family: 'Lora', serif;
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 400;
+      padding-top: 3px;
+      letter-spacing: 0.05em;
     }
 
     .step h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
+      font-family: 'Lora', serif;
+      font-size: 1.12rem;
+      font-weight: 500;
+      margin-bottom: 8px;
     }
 
-    .pricing {
+    .step p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.93rem;
+      font-weight: 300;
+    }
+
+    /* PRICING */
+    .pricing-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-bottom: 48px;
+    }
+
+    .pricing-note {
+      background: rgba(176,138,74,0.06);
+      border: 1px solid rgba(176,138,74,0.14);
+      border-radius: 16px;
+      padding: 24px 28px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      font-weight: 300;
+      font-style: italic;
+      margin-top: 8px;
+      align-self: end;
+    }
+
+    .pricing-grid {
+      display: grid;
       grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .price-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px;
     }
 
     .price-card.featured {
-      background: linear-gradient(180deg, #f5ede1, #f8f4ee);
-      transform: translateY(-8px);
+      background: linear-gradient(160deg, #f5ede1, #faf7f2);
+      border-color: rgba(176,138,74,0.2);
     }
 
     .tier {
-      font-size: 0.8rem;
+      font-size: 0.76rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--accent);
-      font-weight: 800;
+      font-weight: 500;
+      margin-bottom: 14px;
     }
 
     .price-card h3 {
-      font-size: 2rem;
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: 'Lora', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 14px;
+      line-height: 1.2;
     }
 
-    .price {
-      font-size: 3.2rem;
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      margin: 18px 0 6px;
+    .price-card > p {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
     }
 
     .price-card ul {
       list-style: none;
-      padding: 0;
-      margin: 24px 0 0;
       display: grid;
-      gap: 14px;
+      gap: 12px;
+    }
+
+    .price-card li {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
       color: var(--muted);
-      line-height: 1.75;
+      font-size: 0.91rem;
+      line-height: 1.6;
+      font-weight: 300;
     }
 
     .price-card li::before {
-      content: "—";
+      content: "–";
       color: var(--accent);
-      margin-right: 10px;
+      flex-shrink: 0;
     }
 
-    .testimonial-grid {
+    /* QUOTE */
+    .quote-section {
+      background: var(--panel-solid);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 80px 0;
+    }
+
+    .quote-inner {
+      display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
     }
 
-    .quote {
-      font-size: clamp(1.4rem, 2.5vw, 2.15rem);
-      line-height: 1.45;
-      letter-spacing: -0.03em;
-    }
-
-    .quote-card ul {
-      color: var(--muted);
-      line-height: 1.9;
-      padding-left: 18px;
-      margin: 18px 0 0;
-    }
-
-    .quote-card li strong {
+    .quote-text {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.55;
+      letter-spacing: -0.02em;
       color: var(--text);
     }
 
+    .quote-attr {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .why-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .why-item {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .why-item:last-child { border-bottom: none; }
+
+    .why-item h4 {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .why-item p {
+      color: var(--muted);
+      font-size: 0.91rem;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* CTA */
     .cta-box {
       text-align: center;
-      padding: 78px 30px;
+      padding: 80px 40px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
     .cta-box h2 {
-      font-size: clamp(2.4rem, 5vw, 4.2rem);
-      letter-spacing: -0.04em;
-      margin-top: 16px;
+      font-family: 'Lora', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin: 14px 0 18px;
     }
 
     .cta-box p {
-      max-width: 760px;
-      margin: 18px auto 30px;
       color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 32px;
       line-height: 1.85;
+      font-weight: 300;
+      font-size: 1.05rem;
     }
 
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
     footer {
-      padding: 34px 0 46px;
-      color: var(--muted);
+      padding: 32px 0 44px;
     }
 
     .footer-wrap {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 20px;
       flex-wrap: wrap;
-      border-top: 1px solid rgba(23,20,17,0.08);
-      padding-top: 26px;
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 300;
     }
 
-    @media (max-width: 1080px) {
+    /* RESPONSIVE */
+    @media (max-width: 1040px) {
       .hero-wrap,
       .split,
       .cards-3,
-      .pricing,
-      .testimonial-grid {
+      .pricing-intro,
+      .pricing-grid,
+      .quote-inner {
         grid-template-columns: 1fr;
       }
 
-      .section-head {
-        flex-direction: column;
-        align-items: start;
+      .feature-panel {
+        position: static;
       }
 
-      .price-card.featured {
-        transform: none;
+      .pricing-note {
+        margin-top: 0;
       }
     }
 
-    @media (max-width: 760px) {
-      .nav-links a:not(.btn) {
-        display: none;
-      }
-
-      .hero h1 {
-        font-size: 3.35rem;
-      }
-
-      section {
-        padding: 78px 0;
-      }
-
-      .container {
-        width: min(calc(100% - 26px), var(--max));
-      }
-
-      .mini-proof div {
-        max-width: none;
-      }
+    @media (max-width: 720px) {
+      .nav-links a:not(.btn) { display: none; }
+      section { padding: 72px 0; }
+      .hero { padding-top: 56px; }
+      .container { width: min(calc(100% - 28px), var(--max)); }
+      .hero h1 { font-size: 2.8rem; }
+      .cta-box { padding: 52px 24px; }
     }
   </style>
 </head>
@@ -555,14 +617,12 @@
     <div class="container nav-inner">
       <div class="brand">
         <div class="brand-mark"></div>
-        <span>Talent Drift
-        </span>
+        Talent Drift
       </div>
-
       <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#process">How We Work</a>
-        <a href="#pricing">Engagements</a>
+        <a href="#engagements">Engagements</a>
         <a href="#contact" class="btn btn-secondary">Book Intro Call</a>
       </div>
     </div>
@@ -572,63 +632,39 @@
     <div class="container hero-wrap">
       <div>
         <div class="eyebrow"><span class="dot"></span> Boutique Recruiting for Founder-Led Companies</div>
-
-        <h1>Build the team your next stage requires.</h1>
-
+        <h1>The team your next stage <em>requires.</em></h1>
         <p>
-          Talent Drift is arecruiting partner for founders making critical hires.
-          We help early and growth-stage companies secure exceptional technical, product,
-          and design talent with more precision, less noise, and a far higher bar.
+          Talent Drift is a recruiting partner for founders making critical hires. We work with early and growth-stage companies to find exceptional technical, product, and design talent — with more precision and a far higher bar.
         </p>
-
         <div class="hero-actions">
           <a href="#contact" class="btn btn-primary">Book Intro Call</a>
           <a href="#services" class="btn btn-secondary">View Services</a>
         </div>
-
-        <div class="mini-proof">
-          <div>
-            <strong>Founder-Led</strong>
-            Search built around your actual hiring bar
-          </div>
-          <div>
-            <strong>High-Conviction</strong>
-            Candidate introductions over resume volume
-          </div>
-          <div>
-            <strong>Selective</strong>
-            A focused partner model, not a volume agency
-          </div>
-        </div>
       </div>
 
-      <div class="hero-card">
-        <div class="card-label">Search Approach</div>
-        <h3 style="font-size:2rem; margin-top:10px; max-width:12ch;">A tighter, more deliberate way to hire.</h3>
-
-        <div class="pipeline">
-          <div class="pipe-item">
-            <div class="pipe-top">
-              <span>Role Definition</span>
-              <span>Refined</span>
+      <div class="difference-panel">
+        <div class="panel-label">What sets us apart</div>
+        <div class="diff-list">
+          <div class="diff-item">
+            <div class="diff-line"></div>
+            <div class="diff-content">
+              <h4>You work with a senior partner, always</h4>
+              <p>No handoffs to junior associates. The person you speak with on day one runs your search from start to close.</p>
             </div>
-            <div class="bar"><div class="fill" style="width:90%"></div></div>
           </div>
-
-          <div class="pipe-item">
-            <div class="pipe-top">
-              <span>Targeted Outreach</span>
-              <span>Active</span>
+          <div class="diff-item">
+            <div class="diff-line"></div>
+            <div class="diff-content">
+              <h4>Quality over volume, every time</h4>
+              <p>We make fewer introductions on purpose. Every candidate we bring forward has been rigorously assessed against your actual bar.</p>
             </div>
-            <div class="bar"><div class="fill" style="width:82%"></div></div>
           </div>
-
-          <div class="pipe-item">
-            <div class="pipe-top">
-              <span>Candidate Quality</span>
-              <span>High Signal</span>
+          <div class="diff-item">
+            <div class="diff-line"></div>
+            <div class="diff-content">
+              <h4>We understand the cost of a bad hire</h4>
+              <p>We think in terms of runway, stage fit, and long-term team health — not placement fees and fill rates.</p>
             </div>
-            <div class="bar"><div class="fill" style="width:88%"></div></div>
           </div>
         </div>
       </div>
@@ -638,43 +674,26 @@
   <section id="services">
     <div class="container">
       <div class="section-head">
-        <div>
-          <div class="eyebrow">Our Focus</div>
-          <h2>The hires that define your next stage.</h2>
-        </div>
-
-        <p>
-          We work with founders and leadership teams on roles where precision matters—
-          critical technical, product, design, and specialized searches.
-        </p>
+        <div class="eyebrow"><span class="dot"></span> Our Focus</div>
+        <h2>Hires that define your trajectory.</h2>
+        <p>We work on roles where the wrong decision is expensive and the right one changes everything.</p>
       </div>
 
       <div class="cards-3">
         <div class="card">
-          <div class="icon">01</div>
+          <div class="card-num">01</div>
           <h3>Technical Leadership</h3>
-          <p>
-            Founding and senior technical talent capable of building through ambiguity
-            and setting the standard early.
-          </p>
+          <p>Founding and senior engineers who can build through ambiguity, set standards early, and grow with the company as it scales.</p>
         </div>
-
         <div class="card">
-          <div class="icon">02</div>
+          <div class="card-num">02</div>
           <h3>Product & Design</h3>
-          <p>
-            Operators who can bring structure, momentum, and commercial clarity
-            at the stage where every hire matters.
-          </p>
+          <p>Operators who bring structure and clarity at the stage where every decision — and every person — has outsized impact.</p>
         </div>
-
         <div class="card">
-          <div class="icon">03</div>
+          <div class="card-num">03</div>
           <h3>Specialized Search</h3>
-          <p>
-            Difficult-to-fill roles where precision, discretion, and a stronger
-            search process make the difference.
-          </p>
+          <p>Difficult-to-fill roles where a stronger search process, deeper networks, and genuine discretion make the difference.</p>
         </div>
       </div>
     </div>
@@ -683,105 +702,84 @@
   <section id="process">
     <div class="container split">
       <div class="feature-panel">
-        <div class="eyebrow">How We Work</div>
-        <h2>A more disciplined search process.</h2>
+        <div class="eyebrow"><span class="dot"></span> How We Work</div>
+        <h2>A more deliberate search process.</h2>
         <p>
-          We run a tighter process so founders spend less time filtering and more time
-          meeting the right people. Every search begins with clarity, not volume.
+          We run tighter searches so founders spend less time filtering and more time speaking with people worth meeting. Every engagement starts with clarity, not volume.
         </p>
       </div>
 
-      <div class="card">
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">01</div>
-            <div>
-              <h3>Role Calibration</h3>
-              <p>
-                We define the actual brief behind the brief—what success looks like in the role,
-                what stage fit matters, and where compromise is unacceptable.
-              </p>
-            </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <h3>Role Calibration</h3>
+            <p>We define the brief behind the brief — what success looks like in the role, what stage fit means, and where compromise isn't an option.</p>
           </div>
-
-          <div class="step">
-            <div class="step-num">02</div>
-            <div>
-              <h3>Targeted Search</h3>
-              <p>
-                We identify and engage talent through focused outreach, market mapping,
-                and disciplined search execution—not passive inbound dependency.
-              </p>
-            </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <h3>Targeted Search</h3>
+            <p>We identify and engage candidates through focused outreach and disciplined market mapping — not passive job postings or resume databases.</p>
           </div>
-
-          <div class="step">
-            <div class="step-num">03</div>
-            <div>
-              <h3>Candidate Evaluation</h3>
-              <p>
-                We assess capability, motivation, communication, and startup readiness
-                before introducing candidates into your process.
-              </p>
-            </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <h3>Candidate Evaluation</h3>
+            <p>We assess capability, motivation, and startup readiness before anyone enters your process. You only meet people worth your time.</p>
           </div>
-
-          <div class="step">
-            <div class="step-num">04</div>
-            <div>
-              <h3>Offer & Close</h3>
-              <p>
-                We support the close from alignment to acceptance, helping ensure the strongest
-                candidates convert with clarity and confidence.
-              </p>
-            </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <h3>Offer & Close</h3>
+            <p>We support the close from alignment to acceptance — helping ensure your strongest candidates convert with confidence.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="pricing">
+  <section id="engagements">
     <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Engagements</div>
-          <h2>Structured to fit your stage.</h2>
+      <div class="pricing-intro">
+        <div class="section-head" style="margin-bottom:0;">
+          <div class="eyebrow"><span class="dot"></span> Engagements</div>
+          <h2>Structured around how you hire.</h2>
+          <p>Every search is different. We offer three engagement models to fit where your company is and what the role requires.</p>
         </div>
-
-        <p>
-          We keep engagements clear, focused, and aligned to how your company is actually hiring.
-        </p>
+        <div class="pricing-note">
+          Pricing is based on the role, scope, and engagement type. We're happy to walk through what makes sense for your situation on an intro call.
+        </div>
       </div>
 
-      <div class="pricing">
+      <div class="pricing-grid">
         <div class="price-card">
-          <div class="tier">Targeted Search</div>
-          <h3>Search Support</h3>
-          <div class="price">$</div>
+          <div class="tier">Search Support</div>
+          <h3>Sourcing & Pipeline</h3>
           <p>
-            Best for teams with an internal process already in place that need stronger sourcing
-            and more qualified candidate flow.
+            For teams with an internal hiring process who need stronger sourcing and more qualified candidate flow. We own outreach and deliver a vetted shortlist.
           </p>
           <ul>
             <li>Targeted market mapping</li>
-            <li>Candidate outreach</li>
-            <li>Qualified shortlist delivery</li>
-            <li>Weekly search calibration</li>
+            <li>Candidate outreach and engagement</li>
+            <li>Vetted shortlist delivery</li>
+            <li>Regular calibration syncs</li>
           </ul>
         </div>
 
         <div class="price-card featured">
-          <div class="tier">End-to-End</div>
-          <h3>Full-Cycle Search</h3>
-          <div class="price">$$</div>
+          <div class="tier">Full-Cycle Search</div>
+          <h3>End-to-End Partnership</h3>
           <p>
-            Our core engagement. We manage the full search from intake through signed offer.
+            Our core engagement. We manage the complete search — from initial brief through signed offer — acting as a true extension of your team.
           </p>
           <ul>
             <li>Full candidate management</li>
-            <li>Interview coordination</li>
-            <li>Reference and process support</li>
+            <li>Interview coordination and feedback</li>
+            <li>Reference checks and process support</li>
             <li>Offer strategy and close</li>
           </ul>
         </div>
@@ -789,13 +787,12 @@
         <div class="price-card">
           <div class="tier">Embedded</div>
           <h3>Fractional Talent Partner</h3>
-          <div class="price" style="font-size:2.2rem; margin-top:22px;">Custom</div>
           <p>
-            For teams hiring across multiple roles who need a more integrated recruiting partner.
+            For companies hiring across multiple roles who need an integrated recruiting partner embedded in their team and process.
           </p>
           <ul>
             <li>Embedded recruiting support</li>
-            <li>Hiring process refinement</li>
+            <li>Hiring process and structure</li>
             <li>Job architecture and search setup</li>
             <li>Multi-role execution</li>
           </ul>
@@ -804,40 +801,38 @@
     </div>
   </section>
 
-  <section>
-    <div class="container testimonial-grid">
-      <div class="quote-card">
-        <div class="eyebrow">Founder Perspective</div>
-        <p class="quote">
-          “The difference was quality. We spent less time sorting through candidates
-          and more time speaking with people we could actually imagine building with.”
-        </p>
-        <p style="margin-top:20px;">— Founder, Venture-Backed SaaS Company</p>
+  <div class="quote-section">
+    <div class="container quote-inner">
+      <div>
+        <p class="quote-text">"The difference was quality. We spent less time sorting through candidates and more time speaking with people we could actually imagine building with."</p>
+        <p class="quote-attr">— Founder, Venture-Backed SaaS Company</p>
       </div>
-
-      <div class="quote-card">
-        <div class="eyebrow">Why Talent Drift</div>
-        <h3 style="font-size:2rem; margin:16px 0 14px;" class="serif">A higher standard of search.</h3>
-        <ul>
-          <li><strong>No handoffs.</strong> You work directly with a senior recruiting partner.</li>
-          <li><strong>Sharper calibration.</strong> Better upfront definition leads to better downstream hiring.</li>
-          <li><strong>Founder fluency.</strong> We understand stage, urgency, and the cost of getting a key hire wrong.</li>
-        </ul>
+      <div class="why-list">
+        <div class="why-item">
+          <h4>No handoffs</h4>
+          <p>You work directly with a senior recruiting partner from first conversation to close.</p>
+        </div>
+        <div class="why-item">
+          <h4>Sharper calibration</h4>
+          <p>Better upfront definition leads to fewer wasted interviews and stronger hires.</p>
+        </div>
+        <div class="why-item">
+          <h4>Founder fluency</h4>
+          <p>We understand stage, urgency, and what it actually costs to get a key hire wrong.</p>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <section id="contact">
     <div class="container">
       <div class="cta-box">
-        <div class="eyebrow" style="justify-content:center; margin:0 auto; width:max-content;">Start the Search</div>
+        <div class="eyebrow" style="margin: 0 auto; width: max-content;">Start the Search</div>
         <h2>Make the next hire the right one.</h2>
         <p>
-          If the role matters, the search should too. We partner with a select number
-          of companies at a time to keep every engagement focused and high-touch.
+          We partner with a select number of companies at a time to keep every search focused and high-touch. If the role matters, let's talk.
         </p>
-
-        <div class="hero-actions" style="justify-content:center;">
+        <div class="cta-actions">
           <a href="mailto:hello@talentdrift.ai" class="btn btn-primary">Book Intro Call</a>
           <a href="mailto:hello@talentdrift.ai" class="btn btn-secondary">hello@talentdrift.ai</a>
         </div>

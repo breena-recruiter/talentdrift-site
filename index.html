@@ -707,5 +707,155 @@
     </div>
   </footer>
 
+<script>
+const questions = [
+  { key: "roles", q: "How many roles are you hiring for right now?", options: ["1–2","3–5","6+"] },
+  { key: "speed", q: "How fast do you need to fill them?", options: ["< 2 weeks","2–4 weeks","1–2 months","Flexible"] },
+  { key: "founder", q: "Are you founder-led in hiring today?", options: ["Yes","Partially","No"] },
+  { key: "pipeline", q: "How many candidates reach interview stage weekly?", options: ["0–2","3–5","6–10","10+"] },
+  { key: "source", q: "Where do most candidates come from?", options: ["Inbound","Referrals","Outbound","Recruiters","Founder sourcing"] },
+  { key: "bottleneck", q: "What slows hiring most today?", options: ["Sourcing","Outreach follow-up","Scheduling","Candidate quality","Decision-making speed"] },
+  { key: "delay", q: "How often do strong candidates slip due to delays?", options: ["Often","Sometimes","Rarely","Never"] },
+  { key: "hours", q: "How many hours/week are you spending on hiring?", options: ["<5","5–10","10–20","20+"] },
+  { key: "ownership", q: "What are you still doing yourself?", options: ["Sourcing","Outreach","Screening","Final interviews","All of the above"] },
+  { key: "alignment", q: "Does your team evaluate candidates consistently?", options: ["Yes","Somewhat","No"] }
+];
+
+let answers = {};
+let current = 0;
+
+function startDiagnostic() {
+  document.getElementById("quiz").style.display = "block";
+  document.querySelector("#diagnostic button").style.display = "none";
+  showQuestion();
+}
+
+function showQuestion() {
+  const quiz = document.getElementById("quiz");
+  quiz.innerHTML = "";
+
+  if (current >= questions.length) {
+    showEmailGate();
+    return;
+  }
+
+  const q = questions[current];
+  const title = document.createElement("h3");
+  title.innerText = q.q;
+  quiz.appendChild(title);
+
+  q.options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.innerText = opt;
+    btn.style.display = "block";
+    btn.style.margin = "10px 0";
+    btn.onclick = () => {
+      answers[q.key] = opt;
+      current++;
+      showQuestion();
+    };
+    quiz.appendChild(btn);
+  });
+}
+
+function showEmailGate() {
+  const quiz = document.getElementById("quiz");
+  quiz.innerHTML = `
+    <h3>Get your breakdown</h3>
+    <p>Enter your email to see your hiring bottleneck and recommended fix.</p>
+    <input id="email" type="email" placeholder="you@company.com" style="padding:10px; width:100%; margin:10px 0;" />
+    <button onclick="submitEmail()">See results</button>
+  `;
+}
+
+function submitEmail() {
+  const email = document.getElementById("email").value;
+
+  if (!email || !email.includes("@")) {
+    alert("Enter a valid email");
+    return;
+  }
+
+  answers.email = email;
+
+  // 👉 For now: log it (later you connect to backend)
+  console.log("Lead captured:", answers);
+
+  calculateResult();
+}
+
+function calculateResult() {
+  document.getElementById("quiz").style.display = "none";
+  const result = document.getElementById("result");
+  result.style.display = "block";
+
+  let scores = { founder: 0, pipeline: 0, outreach: 0, decision: 0 };
+
+  // weighted scoring
+  if (answers.founder === "Yes") scores.founder += 3;
+  if (answers.hours === "20+") scores.founder += 3;
+  if (answers.ownership === "All of the above") scores.founder += 4;
+  if (answers.delay === "Often") scores.founder += 2;
+
+  if (answers.source === "Inbound") scores.pipeline += 3;
+  if (answers.bottleneck === "Candidate quality") scores.pipeline += 4;
+
+  if (answers.source === "Outbound" || answers.source === "Founder sourcing") scores.outreach += 3;
+  if (answers.bottleneck === "Outreach follow-up") scores.outreach += 4;
+
+  if (answers.bottleneck === "Decision-making speed") scores.decision += 4;
+  if (answers.delay === "Often") scores.decision += 3;
+
+  if (answers.alignment === "No") scores.decision += 4;
+  if (answers.alignment === "Somewhat") scores.decision += 2;
+
+  // branching overrides
+  let type = Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);
+
+  if (answers.ownership === "All of the above") type = "founder";
+  if (answers.source === "Inbound" && answers.bottleneck === "Candidate quality") type = "pipeline";
+  if ((answers.source === "Outbound" || answers.source === "Founder sourcing") && answers.pipeline === "0–2") type = "outreach";
+  if (answers.alignment !== "Yes" && answers.delay === "Often") type = "decision";
+
+  const outputs = {
+    founder: `
+      <h3>🟥 Founder Bottleneck</h3>
+      <p><strong>You are the system — and it’s slowing everything down.</strong></p>
+      <p>Hiring depends on you at too many stages.</p>
+      <p><strong>Risk:</strong> candidates drop while you’re occupied elsewhere.</p>
+      <p><strong>Fix:</strong> remove yourself from execution, keep control of decisions.</p>
+    `,
+    pipeline: `
+      <h3>🟧 Pipeline Noise</h3>
+      <p><strong>You’re evaluating the wrong signals.</strong></p>
+      <p>Volume exists, but quality filtering is broken.</p>
+      <p><strong>Risk:</strong> strong candidates overlooked.</p>
+      <p><strong>Fix:</strong> define and align on what “good” actually means.</p>
+    `,
+    outreach: `
+      <h3>🟨 Outreach Breakdown</h3>
+      <p><strong>Your outreach isn’t landing.</strong></p>
+      <p>This is a positioning issue, not a talent shortage.</p>
+      <p><strong>Risk:</strong> missing candidates who would engage with the right narrative.</p>
+      <p><strong>Fix:</strong> upgrade messaging + consistency.</p>
+    `,
+    decision: `
+      <h3>🟦 Decision Drag</h3>
+      <p><strong>Your team isn’t aligned on how to evaluate talent.</strong></p>
+      <p>This is where strong candidates are being lost.</p>
+      <p><strong>Risk:</strong> slow, inconsistent decisions late-stage.</p>
+      <p><strong>Fix:</strong> structured evaluation + tighter decision loop.</p>
+    `
+  };
+
+  result.innerHTML = `
+    ${outputs[type]}
+    <hr style="margin:20px 0;">
+    <p><strong>Most teams at this stage don’t need more applicants — they need a system that removes this bottleneck.</strong></p>
+    <button onclick="window.location.href='#contact'">Talk through your hiring system</button>
+  `;
+}
+</script>
+  
 </body>
 </html>

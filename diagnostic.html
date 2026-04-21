@@ -1,109 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hiring Diagnostic — Talent Drift</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f3ed;
+      --panel: rgba(255,255,255,0.56);
+      --line: rgba(26,22,18,0.08);
+      --text: #181410;
+      --muted: #6e6259;
+      --accent: #b08a4a;
+      --deep: #27312d;
+      --radius: 20px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(247,243,237,0.85);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Lora', serif;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      position: relative;
+    }
+
+    .brand-mark span {
+      position: absolute;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #d3b172, #a47c3d);
+      border-radius: 999px;
+    }
+
+    .brand-mark span:nth-child(1){left:2px;height:10px;opacity:.5;}
+    .brand-mark span:nth-child(2){left:10px;height:16px;}
+    .brand-mark span:nth-child(3){left:18px;height:24px;}
+    .brand-mark span:nth-child(4){left:26px;height:14px;opacity:.6;}
+
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 80px 0 40px;
+    }
+
+    h1 {
+      font-family: 'Lora', serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: none;
+      background: var(--deep);
+      color: white;
+      cursor: pointer;
+    }
+
+    #quiz, #result {
+      margin-top: 40px;
+      background: var(--panel);
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+    }
+
+    #quiz button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <div class="brand">
+      <div class="brand-mark">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      Talent Drift
+    </div>
+    <div>
+      <a href="/">Home</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>Hiring bottleneck diagnostic</h1>
+    <p>
+      Founder-led hiring works — until it doesn’t.  
+      This shows you where it breaks.
+    </p>
+
+    <button onclick="startDiagnostic()">Start diagnostic</button>
+
+    <div id="quiz" style="display:none;"></div>
+    <div id="result" style="display:none;"></div>
+  </div>
+</section>
+
+<!-- SCRIPT -->
 <script>
-const questions = [
-  { key: "roles", q: "How many roles are you hiring for right now?", options: ["1–2","3–5","6+"] },
-  { key: "speed", q: "How fast do you need to fill them?", options: ["< 2 weeks","2–4 weeks","1–2 months","Flexible"] },
-  { key: "founder", q: "Are you founder-led in hiring today?", options: ["Yes","Partially","No"] },
-  { key: "pipeline", q: "How many candidates reach interview stage weekly?", options: ["0–2","3–5","6–10","10+"] },
-  { key: "source", q: "Where do most candidates come from?", options: ["Inbound","Referrals","Outbound","Recruiters","Founder sourcing"] },
-  { key: "bottleneck", q: "What slows hiring most today?", options: ["Sourcing","Outreach follow-up","Scheduling","Candidate quality","Decision-making speed"] },
-  { key: "delay", q: "How often do strong candidates slip due to delays?", options: ["Often","Sometimes","Rarely","Never"] },
-  { key: "hours", q: "How many hours/week are you spending on hiring?", options: ["<5","5–10","10–20","20+"] },
-  { key: "ownership", q: "What are you still doing yourself?", options: ["Sourcing","Outreach","Screening","Final interviews","All of the above"] },
-  { key: "alignment", q: "Does your team evaluate candidates consistently?", options: ["Yes","Somewhat","No"] }
-];
-
-let answers = {};
-let current = 0;
-
-function startDiagnostic() {
-  document.querySelector("button").style.display = "none";
-  document.getElementById("quiz").style.display = "block";
-  showQuestion();
-}
-
-function showQuestion() {
-  const quiz = document.getElementById("quiz");
-  quiz.innerHTML = "";
-
-  if (current >= questions.length) {
-    showEmailGate();
-    return;
-  }
-
-  const q = questions[current];
-  const title = document.createElement("h3");
-  title.innerText = q.q;
-  quiz.appendChild(title);
-
-  q.options.forEach(opt => {
-    const btn = document.createElement("button");
-    btn.innerText = opt;
-    btn.onclick = () => {
-      answers[q.key] = opt;
-      current++;
-      showQuestion();
-    };
-    quiz.appendChild(btn);
-  });
-}
-
-function showEmailGate() {
-  const quiz = document.getElementById("quiz");
-  quiz.innerHTML = `
-    <h3>Get your breakdown</h3>
-    <input id="email" type="email" placeholder="you@company.com" />
-    <button onclick="submitEmail()">See results</button>
-  `;
-}
-
-function submitEmail() {
-  const email = document.getElementById("email").value;
-
-  if (!email || !email.includes("@")) {
-    alert("Enter a valid email");
-    return;
-  }
-
-  answers.email = email;
-
-  console.log("Lead captured:", answers);
-
-  calculateResult();
-}
-
-function calculateResult() {
-  document.getElementById("quiz").style.display = "none";
-  const result = document.getElementById("result");
-  result.style.display = "block";
-
-  let scores = { founder: 0, pipeline: 0, outreach: 0, decision: 0 };
-
-  if (answers.founder === "Yes") scores.founder += 3;
-  if (answers.hours === "20+") scores.founder += 3;
-  if (answers.ownership === "All of the above") scores.founder += 4;
-  if (answers.delay === "Often") scores.founder += 2;
-
-  if (answers.source === "Inbound") scores.pipeline += 3;
-  if (answers.bottleneck === "Candidate quality") scores.pipeline += 4;
-
-  if (answers.source === "Outbound" || answers.source === "Founder sourcing") scores.outreach += 3;
-  if (answers.bottleneck === "Outreach follow-up") scores.outreach += 4;
-
-  if (answers.bottleneck === "Decision-making speed") scores.decision += 4;
-  if (answers.delay === "Often") scores.decision += 3;
-
-  if (answers.alignment === "No") scores.decision += 4;
-  if (answers.alignment === "Somewhat") scores.decision += 2;
-
-  let type = Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);
-
-  const outputs = {
-    founder: `<h3>🟥 Founder Bottleneck</h3><p>You are the constraint.</p>`,
-    pipeline: `<h3>🟧 Pipeline Noise</h3><p>You’re evaluating the wrong signals.</p>`,
-    outreach: `<h3>🟨 Outreach Breakdown</h3><p>Your outreach isn’t landing.</p>`,
-    decision: `<h3>🟦 Decision Drag</h3><p>Your team isn’t aligned.</p>`
-  };
-
-  result.innerHTML = outputs[type] + `<br><button onclick="window.location.href='/'">Back</button>`;
-}
+/* KEEP YOUR EXISTING SCRIPT EXACTLY AS IS BELOW THIS LINE */
 </script>
+
+</body>
+</html>

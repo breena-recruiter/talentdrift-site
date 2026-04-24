@@ -608,7 +608,7 @@ function showQuestion() {
   updateProgress();
 
   if (current >= questions.length) {
-    showEmailGate();
+    calculateResult();
     return;
   }
 
@@ -630,21 +630,6 @@ function showQuestion() {
     grid.appendChild(btn);
   });
 }
-
-function showEmailGate() {
-  document.getElementById("question-card").innerHTML = `
-    <div class="email-gate">
-      <h3>Your results are ready.</h3>
-      <p>Enter your work email and we'll show you your full breakdown — and send a follow-up with more detail.</p>
-      <div class="email-input-wrap">
-        <input id="email-input" type="email" placeholder="you@company.com" />
-        <button class="btn btn-primary" onclick="submitEmail()">See results</button>
-      </div>
-      <p class="email-note">We'll follow up with your full diagnostic notes. No spam.</p>
-    </div>
-  `;
-}
-
 function submitEmail() {
   const email = document.getElementById("email-input").value.trim();
   if (!email || !email.includes("@")) {
@@ -653,29 +638,26 @@ function submitEmail() {
   }
   answers.email = email;
   sendToGoogleSheets(answers);
-  calculateResult();
+  document.getElementById("email-input").style.display = "none";
+  document.querySelector("#email-capture-wrap .btn").style.display = "none";
+  document.getElementById("email-confirm").style.display = "block";
 }
 
 function sendToGoogleSheets(data) {
-  // TO CONNECT: Replace the URL below with your Google Apps Script web app URL
-  // Instructions: see README or ask Sabreena's co-founder to set up the Apps Script
   const SHEET_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
-
-  if (SHEET_URL === "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") return; // skip if not set up yet
-
+  if (SHEET_URL === "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") return;
   fetch(SHEET_URL, {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...data, timestamp: new Date().toISOString() })
-  }).catch(() => {}); // fail silently
+  }).catch(() => {});
 }
 
 function calculateResult() {
   document.getElementById("quiz-wrap").style.display = "none";
   const wrap = document.getElementById("result-wrap");
   wrap.style.display = "block";
-
   let scores = { founder: 0, pipeline: 0, outreach: 0, decision: 0 };
 
   if (answers.founder === "Yes")              scores.founder += 3;
@@ -718,16 +700,21 @@ function calculateResult() {
 
     <div class="result-cta">
       <div class="result-cta-text">
-        <h3>Recommended engagement: ${r.service}</h3>
-        <p>${r.serviceDesc}</p>
+        <h3>Want a real person to look at this?</h3>
+        <p>We've seen these patterns a lot. If you want to talk through what's actually going on in your hiring — no pitch, just a conversation — we're easy to reach.</p>
       </div>
       <a href="mailto:hello@talentdrift.ai?subject=Hiring Diagnostic — ${encodeURIComponent(r.label)}" class="btn btn-primary">
-        Book intro call
+        Let's talk
       </a>
     </div>
 
-    <div class="follow-up-note">
-      We'll send a more detailed breakdown to <strong>${answers.email}</strong> — including specific recommendations based on your answers. Keep an eye out within 1–2 business days.
+    <div class="follow-up-note" id="email-capture-wrap">
+      <p style="margin-bottom:14px; font-size:0.92rem;">Want a deeper breakdown from one of our team? Leave your email and we'll follow up.</p>
+      <div class="email-input-wrap" style="max-width:380px;">
+        <input id="email-input" type="email" placeholder="you@company.com" />
+        <button class="btn btn-primary" onclick="submitEmail()">Send it over</button>
+      </div>
+      <p class="email-note" id="email-confirm" style="display:none; color: var(--accent); margin-top:10px;">Got it — we'll be in touch.</p>
     </div>
   `;
 

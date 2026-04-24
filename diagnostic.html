@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -61,12 +61,15 @@
       font-family: 'Lora', serif;
       font-size: 1.05rem;
       font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
     }
 
     .brand-mark {
       width: 30px;
       height: 30px;
       position: relative;
+      flex-shrink: 0;
     }
 
     .brand-mark span {
@@ -82,19 +85,49 @@
     .brand-mark span:nth-child(3) { left: 18px; height: 24px; }
     .brand-mark span:nth-child(4) { left: 26px; height: 14px; opacity: .6; }
 
-    .nav-right {
+    .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 28px;
     }
 
-    .nav-right a {
+    .nav-links a {
       color: var(--muted);
       font-size: 0.92rem;
       transition: color 0.2s;
     }
 
-    .nav-right a:hover { color: var(--text); }
+    .nav-links a:hover { color: var(--text); }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 13px 26px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      font-family: 'DM Sans', sans-serif;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: var(--deep);
+      color: white;
+      box-shadow: 0 10px 28px rgba(42,53,48,0.18);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(24,20,16,0.14);
+    }
 
     /* HERO */
     .hero {
@@ -155,39 +188,8 @@
       font-weight: 300;
     }
 
-    /* BUTTONS */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      padding: 13px 26px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      font-family: 'DM Sans', sans-serif;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-
-    .btn-primary {
-      background: var(--deep);
-      color: white;
-      box-shadow: 0 10px 28px rgba(42,53,48,0.18);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid rgba(24,20,16,0.14);
-    }
-
     /* PROGRESS */
-    .progress-wrap {
-      margin-bottom: 32px;
-    }
+    .progress-wrap { margin-bottom: 32px; }
 
     .progress-label {
       display: flex;
@@ -212,10 +214,7 @@
     }
 
     /* QUIZ */
-    #quiz-wrap {
-      display: none;
-      margin-top: 48px;
-    }
+    #quiz-wrap { display: none; margin-top: 48px; }
 
     .question-card {
       background: var(--panel);
@@ -234,10 +233,7 @@
       letter-spacing: -0.02em;
     }
 
-    .options-grid {
-      display: grid;
-      gap: 10px;
-    }
+    .options-grid { display: grid; gap: 10px; }
 
     .option-btn {
       width: 100%;
@@ -260,83 +256,10 @@
       transform: translateX(3px);
     }
 
-    .option-btn.selected {
-      background: rgba(176,138,74,0.08);
-      border-color: rgba(176,138,74,0.35);
-      color: var(--text);
-    }
-
-    /* EMAIL GATE */
-    .email-gate {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 48px 40px;
-      text-align: center;
-    }
-
-    .email-gate h3 {
-      font-family: 'Lora', serif;
-      font-size: 1.8rem;
-      font-weight: 500;
-      margin-bottom: 12px;
-      letter-spacing: -0.02em;
-    }
-
-    .email-gate p {
-      color: var(--muted);
-      font-size: 0.97rem;
-      line-height: 1.75;
-      font-weight: 300;
-      max-width: 440px;
-      margin: 0 auto 28px;
-    }
-
-    .email-input-wrap {
-      display: flex;
-      gap: 10px;
-      max-width: 420px;
-      margin: 0 auto;
-    }
-
-    .email-input-wrap input {
-      flex: 1;
-      padding: 13px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: white;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .email-input-wrap input:focus {
-      border-color: rgba(176,138,74,0.4);
-    }
-
-    .email-input-wrap input::placeholder {
-      color: var(--muted);
-    }
-
-    .email-note {
-      margin-top: 14px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
     /* RESULTS */
-    #result-wrap {
-      display: none;
-      margin-top: 48px;
-    }
+    #result-wrap { display: none; margin-top: 48px; }
 
-    .result-header {
-      margin-bottom: 32px;
-    }
+    .result-header { margin-bottom: 32px; }
 
     .result-type {
       display: inline-flex;
@@ -426,21 +349,46 @@
 
     .follow-up-note {
       margin-top: 20px;
-      padding: 16px 20px;
+      padding: 24px 28px;
       background: rgba(176,138,74,0.06);
       border: 1px solid rgba(176,138,74,0.14);
       border-radius: 12px;
-      font-size: 0.88rem;
       color: var(--muted);
       font-weight: 300;
       line-height: 1.7;
     }
 
-    /* FOOTER */
-    footer {
-      padding: 32px 0 44px;
-      margin-top: 80px;
+    .email-input-wrap {
+      display: flex;
+      gap: 10px;
+      max-width: 380px;
+      margin-top: 14px;
     }
+
+    .email-input-wrap input {
+      flex: 1;
+      padding: 13px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: white;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .email-input-wrap input:focus { border-color: rgba(176,138,74,0.4); }
+    .email-input-wrap input::placeholder { color: var(--muted); }
+
+    .email-note {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--accent);
+    }
+
+    /* FOOTER */
+    footer { padding: 32px 0 44px; margin-top: 80px; }
 
     .footer-wrap {
       display: flex;
@@ -455,11 +403,15 @@
       font-weight: 300;
     }
 
+    @media (max-width: 720px) {
+      .nav-links a:not(.btn) { display: none; }
+    }
+
     @media (max-width: 640px) {
       .result-grid { grid-template-columns: 1fr; }
-      .question-card, .email-gate { padding: 28px 22px; }
+      .question-card { padding: 28px 22px; }
       .result-cta { flex-direction: column; }
-      .email-input-wrap { flex-direction: column; }
+      .email-input-wrap { flex-direction: column; max-width: 100%; }
     }
   </style>
 </head>
@@ -468,14 +420,19 @@
 <nav class="nav">
   <div class="container nav-inner">
     <a href="/" class="brand">
-      <div class="brand-mark">
-        <span></span><span></span><span></span><span></span>
+      <div class="brand-mark" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
       Talent Drift
     </a>
-    <div class="nav-right">
+    <div class="nav-links">
       <a href="/">Home</a>
-      <a href="mailto:hello@talentdrift.ai">hello@talentdrift.ai</a>
+      <a href="/#who">Who We Are</a>
+      <a href="/#how">How We Do It</a>
+      <a href="mailto:hello@talentdrift.ai" class="btn btn-secondary">Book Intro Call</a>
     </div>
   </div>
 </nav>
@@ -493,7 +450,6 @@
 <div style="padding-bottom: 80px;">
   <div class="container">
 
-    <!-- QUIZ -->
     <div id="quiz-wrap">
       <div class="progress-wrap">
         <div class="progress-label">
@@ -507,7 +463,6 @@
       <div class="question-card" id="question-card"></div>
     </div>
 
-    <!-- RESULT -->
     <div id="result-wrap"></div>
 
   </div>
@@ -522,16 +477,16 @@
 
 <script>
 const questions = [
-  { key: "roles",      q: "How many roles are you actively hiring for right now?",           options: ["1–2", "3–5", "6+"] },
-  { key: "speed",      q: "How quickly do you need to fill them?",                           options: ["< 2 weeks", "2–4 weeks", "1–2 months", "Flexible"] },
-  { key: "founder",    q: "Are you personally leading hiring today?",                        options: ["Yes", "Partially", "No"] },
-  { key: "pipeline",   q: "How many candidates reach interview stage each week?",            options: ["0–2", "3–5", "6–10", "10+"] },
-  { key: "source",     q: "Where do most of your candidates come from?",                     options: ["Inbound", "Referrals", "Outbound", "Recruiters", "Founder sourcing"] },
-  { key: "bottleneck", q: "What slows your hiring process the most?",                        options: ["Sourcing", "Outreach follow-up", "Scheduling", "Candidate quality", "Decision-making speed"] },
-  { key: "delay",      q: "How often do strong candidates slip through due to delays?",      options: ["Often", "Sometimes", "Rarely", "Never"] },
-  { key: "hours",      q: "How many hours per week are you personally spending on hiring?",  options: ["< 5", "5–10", "10–20", "20+"] },
-  { key: "ownership",  q: "Which parts of hiring are you still doing yourself?",             options: ["Sourcing", "Outreach", "Screening", "Final interviews", "All of the above"] },
-  { key: "alignment",  q: "Does your team evaluate candidates consistently?",                options: ["Yes", "Somewhat", "No"] }
+  { key: "roles",      q: "How many roles are you actively hiring for right now?",          options: ["1–2", "3–5", "6+"] },
+  { key: "speed",      q: "How quickly do you need to fill them?",                          options: ["< 2 weeks", "2–4 weeks", "1–2 months", "Flexible"] },
+  { key: "founder",    q: "Are you personally leading hiring today?",                       options: ["Yes", "Partially", "No"] },
+  { key: "pipeline",   q: "How many candidates reach interview stage each week?",           options: ["0–2", "3–5", "6–10", "10+"] },
+  { key: "source",     q: "Where do most of your candidates come from?",                    options: ["Inbound", "Referrals", "Outbound", "Recruiters", "Founder sourcing"] },
+  { key: "bottleneck", q: "What slows your hiring process the most?",                       options: ["Sourcing", "Outreach follow-up", "Scheduling", "Candidate quality", "Decision-making speed"] },
+  { key: "delay",      q: "How often do strong candidates slip through due to delays?",     options: ["Often", "Sometimes", "Rarely", "Never"] },
+  { key: "hours",      q: "How many hours per week are you personally spending on hiring?", options: ["< 5", "5–10", "10–20", "20+"] },
+  { key: "ownership",  q: "Which parts of hiring are you still doing yourself?",            options: ["Sourcing", "Outreach", "Screening", "Final interviews", "All of the above"] },
+  { key: "alignment",  q: "Does your team evaluate candidates consistently?",               options: ["Yes", "Somewhat", "No"] }
 ];
 
 const results = {
@@ -610,18 +565,14 @@ function updateProgress() {
 
 function showQuestion() {
   updateProgress();
-
   if (current >= questions.length) {
     calculateResult();
     return;
   }
-
   const q = questions[current];
   const card = document.getElementById("question-card");
-
   card.innerHTML = `<h3>${q.q}</h3><div class="options-grid"></div>`;
   const grid = card.querySelector(".options-grid");
-
   q.options.forEach(opt => {
     const btn = document.createElement("button");
     btn.className = "option-btn";
@@ -634,6 +585,7 @@ function showQuestion() {
     grid.appendChild(btn);
   });
 }
+
 function submitEmail() {
   const email = document.getElementById("email-input").value.trim();
   if (!email || !email.includes("@")) {
@@ -641,13 +593,16 @@ function submitEmail() {
     return;
   }
   answers.email = email;
-  sendToGoogleSheets(answers);
+  answers.resultType = document.querySelector(".result-type")
+    ? document.querySelector(".result-type").innerText.trim()
+    : "";
+  sendToFormspree(answers);
   document.getElementById("email-input").style.display = "none";
   document.querySelector("#email-capture-wrap .btn").style.display = "none";
   document.getElementById("email-confirm").style.display = "block";
 }
 
-function sendToGoogleSheets(data) {
+function sendToFormspree(data) {
   fetch("https://formspree.io/f/xjgjlalp", {
     method: "POST",
     headers: { "Accept": "application/json", "Content-Type": "application/json" },
@@ -666,23 +621,24 @@ function calculateResult() {
   document.getElementById("quiz-wrap").style.display = "none";
   const wrap = document.getElementById("result-wrap");
   wrap.style.display = "block";
+
   let scores = { founder: 0, pipeline: 0, outreach: 0, decision: 0 };
 
-  if (answers.founder === "Yes")              scores.founder += 3;
-  if (answers.hours === "20+")                scores.founder += 3;
+  if (answers.founder === "Yes")                scores.founder += 3;
+  if (answers.hours === "20+")                  scores.founder += 3;
   if (answers.ownership === "All of the above") scores.founder += 4;
-  if (answers.delay === "Often")              scores.founder += 2;
+  if (answers.delay === "Often")                scores.founder += 2;
 
-  if (answers.source === "Inbound")           scores.pipeline += 3;
+  if (answers.source === "Inbound")             scores.pipeline += 3;
   if (answers.bottleneck === "Candidate quality") scores.pipeline += 4;
 
   if (answers.source === "Outbound" || answers.source === "Founder sourcing") scores.outreach += 3;
   if (answers.bottleneck === "Outreach follow-up") scores.outreach += 4;
 
   if (answers.bottleneck === "Decision-making speed") scores.decision += 4;
-  if (answers.delay === "Often")              scores.decision += 3;
-  if (answers.alignment === "No")             scores.decision += 4;
-  if (answers.alignment === "Somewhat")       scores.decision += 2;
+  if (answers.delay === "Often")                scores.decision += 3;
+  if (answers.alignment === "No")               scores.decision += 4;
+  if (answers.alignment === "Somewhat")         scores.decision += 2;
 
   const type = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
   const r = results[type];
@@ -711,18 +667,16 @@ function calculateResult() {
         <h3>Want a real person to look at this?</h3>
         <p>We've seen these patterns a lot. If you want to talk through what's actually going on in your hiring — no pitch, just a conversation — we're easy to reach.</p>
       </div>
-        <a href="https://talentdrift.ai/#contact" class="btn btn-primary">
-            Let's talk
-        </a>
+      <a href="https://talentdrift.ai/#contact" class="btn btn-primary">Let's talk</a>
     </div>
 
     <div class="follow-up-note" id="email-capture-wrap">
-      <p style="margin-bottom:14px; font-size:0.92rem;">Want a deeper breakdown from one of our team? Leave your email and we'll follow up.</p>
-      <div class="email-input-wrap" style="max-width:380px;">
+      <p style="font-size:0.92rem; margin-bottom:14px;">Want a deeper breakdown from one of our team? Leave your email and we'll follow up.</p>
+      <div class="email-input-wrap">
         <input id="email-input" type="email" placeholder="you@company.com" />
         <button class="btn btn-primary" onclick="submitEmail()">Send it over</button>
       </div>
-      <p class="email-note" id="email-confirm" style="display:none; color: var(--accent); margin-top:10px;">Got it — we'll be in touch.</p>
+      <p class="email-note" id="email-confirm" style="display:none;">Got it — we'll be in touch.</p>
     </div>
   `;
 

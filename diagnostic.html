@@ -64,21 +64,23 @@
     }
 
     .brand-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #b08a4a, #d4b57d);
+      width: 30px;
+      height: 30px;
       position: relative;
-      flex-shrink: 0;
     }
 
-    .brand-mark::after {
-      content: "";
+    .brand-mark span {
       position: absolute;
-      inset: 7px;
-      border: 1.5px solid rgba(255,255,255,0.85);
-      border-radius: 5px;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #d3b172, #a47c3d);
+      border-radius: 999px;
     }
+
+    .brand-mark span:nth-child(1) { left: 2px;  height: 10px; opacity: .5; }
+    .brand-mark span:nth-child(2) { left: 10px; height: 16px; }
+    .brand-mark span:nth-child(3) { left: 18px; height: 24px; }
+    .brand-mark span:nth-child(4) { left: 26px; height: 14px; opacity: .6; }
 
     .nav-right {
       display: flex;
@@ -466,7 +468,9 @@
 <nav class="nav">
   <div class="container nav-inner">
     <a href="/" class="brand">
-      <div class="brand-mark"></div>
+      <div class="brand-mark">
+        <span></span><span></span><span></span><span></span>
+      </div>
       Talent Drift
     </a>
     <div class="nav-right">
